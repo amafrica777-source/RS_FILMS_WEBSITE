@@ -1,0 +1,104 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/* HERO SECTION */
+#hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* BACKGROUND LAYERS */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-bg img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    filter: contrast(1.1) brightness(1.05) saturate(1.2);
+}
+
+.hero-bg img.active {
+    opacity: 1;
+}
+
+/* ROTATING LENS */
+.lens-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 380px;
+    height: 380px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.lens {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    animation: rotateLens 18s linear infinite;
+    box-shadow: 0 0 60px rgba(255, 140, 0, 0.25);
+}
+
+@keyframes rotateLens {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* TEXT LAYER */
+.hero-text {
+    position: absolute;
+    bottom: 12%;
+    width: 100%;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: fadeInText 2s ease forwards;
+}
+
+@keyframes fadeInText {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .lens-container {
+        width: 240px;
+        height: 240px;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+}
